@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCL's AI chat web</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            background-color: var(--accent-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* 針對不同功能區塊上色 (可選) */
+        .nav-link[href*="math"], .nav-link[href*="math2"], .nav-link[href*="welcome"], .nav-link[href*="account"]{ background-color: #27ae60; }
+
+        .nav-link[href*="cup"] { background-color: #e67e22; }
+
+        .nav-link[href*="read"], .nav-link[href*="search"], .nav-link[href*="spider1"], 
+        .nav-link[href*="movie1"], .nav-link[href*="movie2"], .nav-link[href*="movie3"] .nav-link[href*="rate"] { background-color: #8e44ad; }
+
+        .nav-link[href*="road"], .nav-link[href*="weather"] { background-color: #998800; }
+
+
+        
+
+        @media (max-width: 600px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>張哲綸的個人首頁</h1>
+    
+    <div class="nav-grid">
+        <a href="/ask" class="nav-link">AI詢問</a>
+    </div>
+</div>
+
+</body>
+</html>
