@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   try {
 
     // =========================
-    // 🟢 防 Dialogflow / Vercel 格式問題
+    // 🟢 防 Vercel / Dialogflow body 問題
     // =========================
     const body =
       typeof req.body === "string"
@@ -19,14 +19,14 @@ module.exports = async (req, res) => {
 
     if (!query) {
       return res.json({
-        fulfillmentText: "請輸入角色名稱"
+        fulfillmentText: "請輸入角色名稱或條件"
       });
     }
 
     const q = query.toLowerCase();
 
     // =========================
-    // 🟢 本地 JSON（一定最優先）
+    // 1️⃣ 本地 JSON（最高優先）
     // =========================
     const local = list.find(([name, c]) =>
       name.toLowerCase() === q ||
@@ -49,7 +49,7 @@ ${c.description}`
     }
 
     // =========================
-    // 🟡 簡化 API fallback（保留但不阻塞）
+    // 2️⃣ 官方 API（備用）
     // =========================
     try {
 
@@ -79,26 +79,28 @@ ${c.description}`
       }
 
     } catch (e) {
-      // API fail 不影響主流程
+      // API 壞掉不影響主流程
     }
 
     // =========================
-    // ❌ 找不到（先不要 AI / 爬蟲）
-    // 👉 避免 timeout
+    // 3️⃣ 找不到
     // =========================
     return res.json({
       fulfillmentText:
-`找不到角色：
+`找不到角色或資料：
 ${query}
 
-請確認名稱（例如：尼可 / Furina）`
+請確認名稱，例如：
+- 尼可
+- Furina
+- 鍾離`
     });
 
   } catch (e) {
     console.error(e);
 
     return res.json({
-      fulfillmentText: "系統錯誤"
+      fulfillmentText: "系統錯誤，請稍後再試"
     });
   }
 };
