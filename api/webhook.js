@@ -9,87 +9,61 @@ const config = {
 const client = new line.Client(config);
 
 module.exports = async (req, res) => {
-
-  if (req.method !== "POST") {
-    return res.status(200).send("Genshin Bot Running");
-  }
-
   try {
+    // ✅ Vercel safety parse
+    const body = typeof req.body === "string"
+      ? JSON.parse(req.body)
+      : req.body;
 
-    const event = req.body.events?.[0];
-
-    if (!event) {
-      return res.status(200).end();
+    if (!body?.events) {
+      return res.status(200).send("OK");
     }
 
-    if (event.type !== "message") {
-      return res.status(200).end();
+    const event = body.events[0];
+
+    if (!event || event.type !== "message") {
+      return res.status(200).send("OK");
     }
 
     const userMessage = event.message.text.trim();
 
+    const response = await axios.get(
+      "https://genshin.jmp.blue/characters"
+    );
+
+    const characters = response.data;
+
+    const foundCharacter = characters.find(
+      c => c.toLowerCase() === userMessage.toLowerCase()
+    );
+
     let replyText = "";
 
-    try {
-
-      const response = await axios.get(
-        `https://genshin.jmp.blue/characters`
+    if (!foundCharacter) {
+      replyText = "找不到角色\n請輸入英文，例如: furina";
+    } else {
+      const detail = await axios.get(
+        `https://genshin.jmp.blue/characters/${foundCharacter}`
       );
 
-      const characters = response.data;
-
-      const foundCharacter = characters.find(
-        char =>
-          char.toLowerCase() ===
-          userMessage.toLowerCase()
-      );
-
-      if (!foundCharacter) {
-
-        replyText =
-          "找不到該角色\n\n請輸入英文名稱\n例如：furina";
-
-      } else {
-
-        const detail = await axios.get(
-          `https://genshin.jmp.blue/characters/${foundCharacter}`
-        );
-
-        const data = detail.data;
-
-        replyText =
-`角色：${data.name}
-
-元素：${data.vision}
-
-武器：${data.weapon}
-
-稀有度：${data.rarity}★`;
-
-      }
-
-    } catch (error) {
+      const data = detail.data;
 
       replyText =
-        "查詢失敗，請稍後再試";
-
-      console.error(error);
+`角色：${data.name}
+元素：${data.vision}
+武器：${data.weapon}
+稀有度：${data.rarity}★`;
     }
 
-    await client.replyMessage(
-      event.replyToken,
-      {
-        type: "text",
-        text: replyText
-      }
-    );
+    await client.replyMessage(event.replyToken, {
+      type: "text",
+      text: replyText
+    });
 
     return res.status(200).end();
 
   } catch (err) {
-
-    console.error(err);
-
-    return res.status(500).send(err);
+    console.error("ERROR:", err);
+    return res.status(500).send("Internal Error");
   }
 };
