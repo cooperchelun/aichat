@@ -1,14 +1,20 @@
 const axios = require("axios");
-const characters = require("../data/characters.json");
+const fs = require("fs");
+const path = require("path");
+
+// 讀你自己的角色庫
+const characters = JSON.parse(
+  fs.readFileSync(
+    path.join(process.cwd(), "data", "character.json"),
+    "utf8"
+  )
+);
 
 const list = Object.entries(characters);
 
 module.exports = async (req, res) => {
   try {
 
-    // =========================
-    // 🟢 防 Vercel / Dialogflow body 問題
-    // =========================
     const body =
       typeof req.body === "string"
         ? JSON.parse(req.body)
@@ -19,14 +25,14 @@ module.exports = async (req, res) => {
 
     if (!query) {
       return res.json({
-        fulfillmentText: "請輸入角色名稱或條件"
+        fulfillmentText: "請輸入角色名稱"
       });
     }
 
     const q = query.toLowerCase();
 
     // =========================
-    // 1️⃣ 本地 JSON（最高優先）
+    // 1️⃣ 先查你的 JSON（新角色）
     // =========================
     const local = list.find(([name, c]) =>
       name.toLowerCase() === q ||
@@ -49,7 +55,7 @@ ${c.description}`
     }
 
     // =========================
-    // 2️⃣ 官方 API（備用）
+    // 2️⃣ 再查官方 API（舊角色補齊）
     // =========================
     try {
 
@@ -79,7 +85,7 @@ ${c.description}`
       }
 
     } catch (e) {
-      // API 壞掉不影響主流程
+      // API 掛掉不影響
     }
 
     // =========================
@@ -87,20 +93,17 @@ ${c.description}`
     // =========================
     return res.json({
       fulfillmentText:
-`找不到角色或資料：
+`找不到角色：
 ${query}
 
-請確認名稱，例如：
-- 尼可
-- Furina
-- 鍾離`
+（目前資料庫與API都沒有）`
     });
 
   } catch (e) {
     console.error(e);
 
     return res.json({
-      fulfillmentText: "系統錯誤，請稍後再試"
+      fulfillmentText: "系統錯誤"
     });
   }
 };
