@@ -1,100 +1,32 @@
 const axios = require("axios");
-const cheerio = require("cheerio");
 const characters = require("../data/characters.json");
 
 const list = Object.entries(characters);
 
-//
-// ==========================
-// 🟡 Gemini AI fallback
-// ==========================
-//
-async function askGemini(name) {
-  try {
-
-    const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        contents: [
-          {
-            parts: [
-              {
-                text:
-`你是原神角色資料助手，請用以下格式回答：
-
-角色名稱：${name}
-稀有度：
-武器類型：
-簡短介紹：
-
-如果不是已知角色，請合理推測或回答「未知角色」。`
-              }
-            ]
-          }
-        ]
-      }
-    );
-
-    return response.data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-  } catch (e) {
-    return null;
-  }
-}
-
-//
-// ==========================
-// 🟡 Wiki 爬蟲 fallback
-// ==========================
-//
-async function crawlWiki(name) {
-  try {
-
-    const url =
-      `https://wiki.biligame.com/ys/${encodeURIComponent(name)}`;
-
-    const res = await axios.get(url);
-    const $ = cheerio.load(res.data);
-
-    const title = $("h1").first().text();
-    const desc = $(".mw-parser-output p")
-      .first()
-      .text()
-      .trim();
-
-    if (!title) return null;
-
-    return {
-      name: title,
-      description: desc || "無資料"
-    };
-
-  } catch (e) {
-    return null;
-  }
-}
-
-//
-// ==========================
-// 🧠 主 webhook
-// ==========================
-//
 module.exports = async (req, res) => {
   try {
 
+    // =========================
+    // 🟢 防 Dialogflow / Vercel 格式問題
+    // =========================
+    const body =
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body;
+
     const query =
-      req.body.queryResult?.queryText?.trim();
+      body?.queryResult?.queryText?.trim();
 
     if (!query) {
       return res.json({
-        fulfillmentText: "請輸入角色名稱或條件"
+        fulfillmentText: "請輸入角色名稱"
       });
     }
 
     const q = query.toLowerCase();
 
     // =========================
-    // 1️⃣ 本地 JSON 查詢（最高優先）
+    // 🟢 本地 JSON（一定最優先）
     // =========================
     const local = list.find(([name, c]) =>
       name.toLowerCase() === q ||
@@ -117,12 +49,13 @@ ${c.description}`
     }
 
     // =========================
-    // 2️⃣ 官方 API 查詢
+    // 🟡 簡化 API fallback（保留但不阻塞）
     // =========================
     try {
 
       const apiList = await axios.get(
-        "https://genshin.jmp.blue/characters"
+        "https://genshin.jmp.blue/characters",
+        { timeout: 3000 }
       );
 
       const found = apiList.data.find(c =>
@@ -132,7 +65,8 @@ ${c.description}`
       if (found) {
 
         const d = await axios.get(
-          `https://genshin.jmp.blue/characters/${found}`
+          `https://genshin.jmp.blue/characters/${found}`,
+          { timeout: 3000 }
         );
 
         return res.json({
@@ -144,46 +78,20 @@ ${c.description}`
         });
       }
 
-    } catch (e) {}
-
-    // =========================
-    // 3️⃣ Wiki 爬蟲 fallback
-    // =========================
-    const wiki = await crawlWiki(query);
-
-    if (wiki) {
-      return res.json({
-        fulfillmentText:
-`（Wiki資料）
-
-角色：${wiki.name}
-
-介紹：
-${wiki.description}`
-      });
+    } catch (e) {
+      // API fail 不影響主流程
     }
 
     // =========================
-    // 4️⃣ Gemini AI fallback
-    // =========================
-    const ai = await askGemini(query);
-
-    if (ai) {
-      return res.json({
-        fulfillmentText:
-`（AI補充）
-
-${ai}`
-      });
-    }
-
-    // =========================
-    // ❌ 都找不到
+    // ❌ 找不到（先不要 AI / 爬蟲）
+    // 👉 避免 timeout
     // =========================
     return res.json({
       fulfillmentText:
-`找不到角色或資料：
-${query}`
+`找不到角色：
+${query}
+
+請確認名稱（例如：尼可 / Furina）`
     });
 
   } catch (e) {
