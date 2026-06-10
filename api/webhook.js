@@ -1,5 +1,17 @@
 module.exports = async (req, res) => {
-  return res.status(200).json({
-    status: "Vercel OK"
-  });
+  try {
+
+    const body = req.body;
+
+    const query = body.queryResult?.queryText;
+
+    return res.json({
+      fulfillmentText: "你輸入的是：" + query
+    });
+
+  } catch (e) {
+    return res.json({
+      fulfillmentText: "error"
+    });
+  }
 };
