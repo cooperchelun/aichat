@@ -9,6 +9,13 @@ const characters = JSON.parse(
   )
 );
 
+// 新增：讀取國家資料
+const nations = JSON.parse(
+  fs.readFileSync(
+    path.join(process.cwd(), "data", "nation.json"),
+    "utf8"
+  )
+);
 const list = Object.entries(characters);
 
 // =========================
