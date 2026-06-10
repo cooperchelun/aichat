@@ -1,4 +1,12 @@
+const line = require("@line/bot-sdk");
 const axios = require("axios");
+
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET
+};
+
+const client = new line.Client(config);
 
 module.exports = async (req, res) => {
   try {
@@ -10,9 +18,11 @@ module.exports = async (req, res) => {
 
     const event = body?.events?.[0];
 
-    if (!event) return res.status(200).send("OK");
+    if (!event || event.type !== "message") {
+      return res.status(200).send("OK");
+    }
 
-    const text = event.message.text;
+    const text = event.message.text.trim();
 
     const list = await axios.get(
       "https://genshin.jmp.blue/characters"
@@ -40,11 +50,16 @@ module.exports = async (req, res) => {
 稀有度：${d.rarity}★`;
     }
 
-    // 👉 先用最簡單方式回（LINE 之後再接）
-    return res.status(200).json({ reply });
+    // ✅ 這裡才是真正回 LINE
+    await client.replyMessage(event.replyToken, {
+      type: "text",
+      text: reply
+    });
 
-  } catch (e) {
-    console.error(e);
+    return res.status(200).end();
+
+  } catch (err) {
+    console.error(err);
     return res.status(200).send("error handled");
   }
 };
