@@ -2,9 +2,6 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
-// =========================
-// 📦 讀取角色資料（最穩核心）
-// =========================
 const characters = JSON.parse(
   fs.readFileSync(
     path.join(process.cwd(), "data", "character.json"),
@@ -15,83 +12,78 @@ const characters = JSON.parse(
 const list = Object.entries(characters);
 
 // =========================
-// 🧠 正規化（解決查不到問題）
+// 🟡 Gemini 補資料（取代爬蟲）
 // =========================
-const normalize = (str) =>
-  (str || "")
-    .toLowerCase()
-    .replace(/\s/g, "");
-
-// =========================
-// 💬 基礎聊天（不用 AI）
-// =========================
-function ruleChat(text) {
-  const t = text.toLowerCase();
-
-  if (t.includes("你好") || t.includes("嗨")) return "你好 🙂 我是原神助手";
-  if (t.includes("你是誰")) return "我是原神查詢 + 聊天助手";
-  if (t.includes("幫助") || t.includes("help"))
-    return "可以查角色（芙寧娜、鍾離）或國家、武器";
-  if (t.includes("謝謝")) return "不客氣 🙂";
-
-  return null;
-}
-
-// =========================
-// 🤖 Gemini（只當聊天備援）
-// =========================
-async function chatWithGemini(text) {
+async function askAI(name) {
   try {
-    const url =
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" +
-      process.env.GEMINI_API_KEY;
+    const res = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        contents: [{
+          parts: [{
+            text: `請提供原神角色資料，格式如下：
 
-    const res = await axios.post(url, {
-      contents: [
-        {
-          parts: [{ text }]
-        }
-      ]
-    });
+角色名稱：${name}
+稀有度（如果未知請推測）：
+武器類型（如果未知請推測）：
+簡短介紹（合理補全）：
+`
+          }]
+        }]
+      }
+    );
 
-    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
   } catch (e) {
-    console.log("❌ Gemini Error:", e.response?.data || e.message);
     return null;
   }
 }
 
 // =========================
-// 🌐 webhook 主程式
+// webhook
 // =========================
 module.exports = async (req, res) => {
   try {
+
     const body =
       typeof req.body === "string"
         ? JSON.parse(req.body)
         : req.body;
 
-    const query = body?.queryResult?.queryText?.trim();
+    const query =
+      body?.queryResult?.queryText?.trim();
 
     if (!query) {
-      return res.json({ fulfillmentText: "請輸入內容" });
+      return res.json({
+        fulfillmentText: "請輸入角色名稱"
+      });
     }
 
-    const q = normalize(query);
+    const q = query.toLowerCase();
 
-    // =========================
-    // 1️⃣ JSON 查角色（最高優先）
-    // =========================
+    // 1️⃣ JSON（支援 aliases 別名）
+    let local = null;
+    
     for (const [name, c] of list) {
-      const keys = [
-        normalize(name),
-        normalize(c.english)
+      // 收集所有可搜尋關鍵字（中文名稱 + 英文 + 別名）
+      const searchKeys = [
+        name.toLowerCase(),
+        c.english?.toLowerCase(),
+        ...(c.aliases || []).map(a => a.toLowerCase())
       ];
+      
+      if (searchKeys.includes(q)) {
+        local = [name, c];
+        break;
+      }
+    }
 
-      if (keys.includes(q)) {
-        return res.json({
-          fulfillmentText:
+    if (local) {
+      const [name, c] = local;
+
+      return res.json({
+        fulfillmentText:
 `角色：${name}
 英文：${c.english}
 稀有度：${c.rarity}★
@@ -99,21 +91,18 @@ module.exports = async (req, res) => {
 
 介紹：
 ${c.description}`
-        });
-      }
+      });
     }
 
-    // =========================
-    // 2️⃣ API 補充查詢
-    // =========================
+    // 2️⃣ API
     try {
       const api = await axios.get(
         "https://genshin.jmp.blue/characters",
         { timeout: 3000 }
       );
 
-      const found = api.data.find(
-        c => normalize(c) === q
+      const found = api.data.find(c =>
+        c.toLowerCase() === q
       );
 
       if (found) {
@@ -132,39 +121,32 @@ ${c.description}`
       }
     } catch (e) {}
 
-    // =========================
-    // 3️⃣ 規則聊天（便宜快速）
-    // =========================
-    const rule = ruleChat(query);
-    if (rule) {
-      return res.json({ fulfillmentText: rule });
-    }
-
-    // =========================
-    // 4️⃣ Gemini（最後備援）
-    // =========================
-    const ai = await chatWithGemini(query);
+    // 3️⃣ AI fallback（取代爬蟲）
+    const ai = await askAI(query);
 
     if (ai) {
-      return res.json({ fulfillmentText: ai });
+      return res.json({
+        fulfillmentText:
+`（AI補全資料）
+
+${ai}`
+      });
     }
 
-    // =========================
-    // 5️⃣ 最終 fallback（永不炸）
-    // =========================
     return res.json({
       fulfillmentText:
-`目前查無相關資訊。
-
-請確認輸入是否正確（例如：鍾離、芙寧娜）
-或嘗試其他關鍵字。`
+    `目前系統未查到相關資訊。
+    
+    請確認是否有錯字，或輸入正確角色名稱。
+    
+    你也可以自行查詢官方圖鑑：
+    https://wiki.hoyolab.com/pc/genshin/home`
     });
 
   } catch (e) {
     console.error(e);
-
     return res.json({
-      fulfillmentText: "系統暫時異常，請稍後再試"
+      fulfillmentText: "系統錯誤"
     });
   }
 };
