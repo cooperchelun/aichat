@@ -10,18 +10,20 @@ const client = new line.Client(config);
 
 module.exports = async (req, res) => {
   try {
-    // ✅ Vercel safety parse
-    const body = typeof req.body === "string"
-      ? JSON.parse(req.body)
-      : req.body;
 
-    if (!body?.events) {
+    // ✅ 這行是修復重點（不要刪）
+    const body =
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body;
+
+    const event = body?.events?.[0];
+
+    if (!event) {
       return res.status(200).send("OK");
     }
 
-    const event = body.events[0];
-
-    if (!event || event.type !== "message") {
+    if (event.type !== "message") {
       return res.status(200).send("OK");
     }
 
@@ -33,17 +35,18 @@ module.exports = async (req, res) => {
 
     const characters = response.data;
 
-    const foundCharacter = characters.find(
+    const found = characters.find(
       c => c.toLowerCase() === userMessage.toLowerCase()
     );
 
     let replyText = "";
 
-    if (!foundCharacter) {
-      replyText = "找不到角色\n請輸入英文，例如: furina";
+    if (!found) {
+      replyText = "找不到角色，請輸入英文（例如 furina）";
     } else {
+
       const detail = await axios.get(
-        `https://genshin.jmp.blue/characters/${foundCharacter}`
+        `https://genshin.jmp.blue/characters/${found}`
       );
 
       const data = detail.data;
@@ -63,7 +66,7 @@ module.exports = async (req, res) => {
     return res.status(200).end();
 
   } catch (err) {
-    console.error("ERROR:", err);
-    return res.status(500).send("Internal Error");
+    console.error(err);
+    return res.status(200).send("ERROR BUT HANDLED");
   }
 };
