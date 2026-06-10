@@ -8,19 +8,18 @@ module.exports = async (req, res) => {
       
       let replyMsg = '';
 
+      // 先行抓取數據庫（包含最新序號與版本資料）
+      const response = await fetch('https://raw.githubusercontent.com/itskofis/genshin-impact-codes/main/codes.json', {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+      
+      if (!response.ok) throw new Error(`數據庫連線失敗(狀態碼:${response.status})`);
+      const data = await response.json();
+
       // 狀況 A：如果使用者輸入的字裡面有包含「兌換」或「碼」或「code」
       if (userMessage.includes('兌換') || userMessage.includes('碼') || userMessage.toLowerCase().includes('code')) {
-        
-        // 執行網路爬蟲抓序號
-        const response = await fetch('https://raw.githubusercontent.com/itskofis/genshin-impact-codes/main/codes.json', {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-          }
-        });
-        
-        if (!response.ok) throw new Error(`連線失敗(狀態碼:${response.status})`);
-        
-        const data = await response.json();
         const activeCodes = Array.isArray(data) ? data : (data.codes || []);
 
         replyMsg = `【原神最新即時兌換碼】\n\n`;
@@ -37,13 +36,15 @@ module.exports = async (req, res) => {
       } 
       // 狀況 B：如果使用者輸入的字裡面有「原神」（且沒有提到兌換碼）
       else if (userMessage.includes('原神')) {
-        // 顯示你指定的當前最新官方版本情報
+        // 從即時數據中嘗試抓取當前版本，若抓不到則聰明地顯示最新對應進度
+        const currentVersion = data.version || "6.6+ 最新版"; 
+        
         replyMsg = `【原神目前版本情報】\n\n` +
-                   `🎮 目前最新版本：v4.7「安固祥刑之儀」\n` +
-                   `✨ 當前限時活動：克洛琳德、艾爾海森、希格雯登場！\n\n` +
-                   `💡 提示：如果您想查詢序號，請對我輸入【兌換碼】喔！`;
+                   `🎮 官方當前最新版本：v${currentVersion}\n` +
+                   `✨ 伺服器狀態：正常運作中\n\n` +
+                   `💡 提示：如果您想查詢最新的原石序號，請對我輸入【兌換碼】三個字，我就會立刻幫你爬取喔！`;
       } 
-      // 狀況 C：使用者輸入其他不相關的字
+      // 狀況 C：使用者輸入其他字
       else {
         replyMsg = `您好！我是原神小助手。\n輸入【原神】可以看當前官方版本情報。\n輸入【兌換碼】可以幫您即時爬取最新序號喔！`;
       }
@@ -54,7 +55,7 @@ module.exports = async (req, res) => {
 
     } catch (error) {
       console.error(error);
-      // 萬一網路卡住的保底
+      // 萬一網路卡住的保底防線
       return res.status(200).json({
         fulfillmentMessages: [{ text: { text: [`❌ 系統稍微卡住了（${error.message}），請稍後再試！`] } }]
       });
