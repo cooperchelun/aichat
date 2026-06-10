@@ -281,35 +281,35 @@
   },
   "娜維婭": {
     "english": "Navia",
-    "aliases": ["navia", "刺玫會會長"],
+    "aliases": ["navia", "刺玫會會長", "大小姐"],
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "刺玫會現任會長，一位可愛、盡責的好老闆。"
   },
   "芙寧娜": {
     "english": "Furina",
-    "aliases": ["furina", "芙芙", "水神"],
+    "aliases": ["furina", "芙芙", "水神", "芙卡洛斯"],
     "rarity": 5,
     "weapon": "單手劍",
     "description": "審判舞台上的絕對焦點，直至謝幕的掌聲響起。"
   },
   "夏洛蒂": {
     "english": "Charlotte",
-    "aliases": ["charlotte", "記者", "蒸氣鳥報"],
+    "aliases": ["charlotte", "記者", "蒸氣鳥報", "記者小姐"],
     "rarity": 4,
     "weapon": "法器",
     "description": "充滿活力的蒸氣鳥報記者，每時每刻都在為「真相」奔走。"
   },
   "萊歐斯利": {
     "english": "Wriothesley",
-    "aliases": ["wriothesley", "公爵", "梅洛彼得堡"],
+    "aliases": ["wriothesley", "公爵", "梅洛彼得堡", "典獄長"],
     "rarity": 5,
     "weapon": "法器",
     "description": "梅洛彼得堡的公爵，隱於漆黑海底的領主。"
   },
   "那維萊特": {
     "english": "Neuvillette",
-    "aliases": ["neuvillette", "最高審判官", "水龍"],
+    "aliases": ["neuvillette", "最高審判官", "水龍", "水龍王", "龍王"],
     "rarity": 5,
     "weapon": "法器",
     "description": "楓丹的最高審判官，因其無懈可擊的「秉公無私」而聞名。"
