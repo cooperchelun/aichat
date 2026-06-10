@@ -400,14 +400,14 @@
   },
   "莱依拉": {
     "english": "Layla",
-    "aliases": ["layla"],
+    "aliases": ["layla", "雙重人格"],
     "rarity": 4,
     "weapon": "單手劍",
     "description": "專攻理論星相學的梨多梵諦學院學生。時常夢遊，長期缺覺，飽受睡眠問題困擾。"
   },
   "納西妲": {
     "english": "Nahida",
-    "aliases": ["nahida", "小草神", "草神", "小吉祥草王"],
+    "aliases": ["nahida", "小草神", "草神", "小吉祥草王", "布耶爾"],
     "rarity": 5,
     "weapon": "法器",
     "description": "深居淨善宮的籠中之鳥，只能在夢中將世界盡收眼底。"
@@ -435,7 +435,7 @@
   },
   "多莉": {
     "english": "Dori",
-    "aliases": ["dori", "旅行百貨商人"],
+    "aliases": ["dori", "旅行百貨商人", "桑歌馬哈巴依老爺"],
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "神出鬼沒的旅行百貨商人，最喜歡亮閃閃的摩拉。"
@@ -505,7 +505,7 @@
   },
   "荒瀧一斗": {
     "english": "Arataki Itto",
-    "aliases": ["arataki itto", "一斗", "荒瀧派"],
+    "aliases": ["arataki itto", "一斗", "荒瀧派", "itto"],
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "活躍於稻妻城花見坂的「荒瀧派」初代目頭領。什麼，從來沒聽過荒瀧派？你是想找碴嗎？"
@@ -554,7 +554,7 @@
   },
   "宵宮": {
     "english": "Yoimiya",
-    "aliases": ["yoimiya", "宵宮", "夏祭的女王", "長野原煙火店"],
+    "aliases": ["yoimiya", "宵宮", "夏祭的女王", "長野原煙火店", "煙火"],
     "rarity": 5,
     "weapon": "弓",
     "description": "「長野原煙火店」店長，「夏祭的女王」，將人們的願望寄託於煙火中的能工巧匠。"
@@ -568,7 +568,7 @@
   },
   "神裡綾華": {
     "english": "Kamisato Ayaka",
-    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐"],
+    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐", "白鷺公主"],
     "rarity": 5,
     "weapon": "單手劍",
     "description": "稻妻「社奉行」神裡家的大小姐。端莊而文雅，聰慧又堅韌。"
@@ -582,7 +582,7 @@
   },
   "優菈": {
     "english": "Eula",
-    "aliases": ["eula", "優菈", "浪花騎士"],
+    "aliases": ["eula", "優菈", "浪花騎士", "勞倫斯"],
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "古老家族出身的「浪花騎士」，西風騎士團遊擊小隊隊長。身為舊貴族後裔卻加入了堪稱死對頭的西風騎士團，至今仍是蒙德一大謎團。"
@@ -603,7 +603,7 @@
   },
   "胡桃": {
     "english": "Hu Tao",
-    "aliases": ["hu tao", "胡桃", "往生堂堂主"],
+    "aliases": ["hu tao", "胡桃", "往生堂堂主", "堂主"],
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "「往生堂」七十七代堂主，年紀輕輕就已主掌璃月的葬儀事務。"
@@ -666,7 +666,7 @@
   },
   "溫迪": {
     "english": "Venti",
-    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯"],
+    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯", "酒鬼"],
     "rarity": 5,
     "weapon": "弓",
     "description": "蒙德城諸多吟遊詩人中的一位，自由自在地穿梭在街頭巷尾。"
@@ -687,7 +687,7 @@
   },
   "迪盧克": {
     "english": "Diluc",
-    "aliases": ["diluc", "迪盧克", "貴公子", "晨曦酒莊"],
+    "aliases": ["diluc", "迪盧克", "晨曦酒莊"],
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "坐擁蒙德大半酒業的貴公子，財力、人望、能力都令人無法小覷。"
@@ -736,7 +736,7 @@
   },
   "麗莎": {
     "english": "Lisa",
-    "aliases": ["lisa", "圖書館員", "天才"],
+    "aliases": ["lisa", "圖書館理員", "天才"],
     "rarity": 4,
     "weapon": "法器",
     "description": "慵懶而博學的圖書館員，須彌教令院「兩百年一見」的天才畢業生。"
@@ -771,14 +771,14 @@
   },
   "行秋": {
     "english": "Xingqiu",
-    "aliases": ["xingqiu", "行秋", "俠義", "書生"],
+    "aliases": ["xingqiu", "行秋", "俠義", "書生", "古華派"],
     "rarity": 4,
     "weapon": "單手劍",
     "description": "常常能在書攤看到的少年人。手執長劍，胸中常懷俠義之心。"
   },
   "凝光": {
     "english": "Ningguang",
-    "aliases": ["ningguang", "凝光", "天權", "七星"],
+    "aliases": ["ningguang", "凝光", "天權", "七星", "群玉閣"],
     "rarity": 4,
     "weapon": "法器",
     "description": "「璃月七星」中的「天權」，其名下財富之多，全大陸鮮有人能望其項背。"
@@ -792,21 +792,21 @@
   },
   "重雲": {
     "english": "Chongyun",
-    "aliases": ["chongyun", "重雲", "方士", "純陽之體"],
+    "aliases": ["chongyun", "重雲", "方士", "純陽之體", "驅魔士"],
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "驅邪世家的年輕方士，為壓制自身的「純陽之體」費盡心機。"
   },
   "凱亞": {
     "english": "Kaeya",
-    "aliases": ["kaeya", "凱亞", "劍鬥士", "頭腦派"],
+    "aliases": ["kaeya", "凱亞", "劍鬥士", "頭腦派", "騎兵"],
     "rarity": 4,
     "weapon": "單手劍",
     "description": "異國面容的劍鬥士，西風騎士團的頭腦派人物。"
   },
     "旅行者": {
     "english": "Traveler",
-    "aliases": ["aether", "lumine", "空", "螢", "哥哥", "妹妹", "旅行者"],
+    "aliases": ["aether", "lumine", "空", "螢", "哥哥", "妹妹", "旅行者", "兄妹", "小可愛"],
     "rarity": 5,
     "weapon": "單手劍",
     "description": "從世界之外漂流而來的旅行者，被神帶走血親，自此踏上尋找七神之路。"
