@@ -43,7 +43,7 @@ function ruleChat(text) {
 async function chatWithGemini(text) {
   try {
     const url =
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" +
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" +
       process.env.GEMINI_API_KEY;
 
     const res = await axios.post(url, {
@@ -54,15 +54,10 @@ async function chatWithGemini(text) {
       ]
     });
 
-    console.log("✅ STATUS:", res.status);
-    console.log("✅ DATA:", JSON.stringify(res.data, null, 2));
-
     return res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
 
   } catch (e) {
-    console.log("❌ GEMINI ERROR STATUS:", e.response?.status);
-    console.log("❌ GEMINI ERROR DATA:", e.response?.data);
-
+    console.log("❌ Gemini Error:", e.response?.data || e.message);
     return null;
   }
 }
