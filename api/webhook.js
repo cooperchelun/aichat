@@ -11,9 +11,6 @@ const characters = JSON.parse(
 
 const list = Object.entries(characters);
 
-// =========================
-// 🟡 Gemini 補資料（取代爬蟲）
-// =========================
 async function askAI(name) {
   try {
     const res = await axios.post(
@@ -21,28 +18,22 @@ async function askAI(name) {
       {
         contents: [{
           parts: [{
-            text: `請提供原神角色資料，格式如下：
-
-角色名稱：${name}
-稀有度（如果未知請推測）：
-武器類型（如果未知請推測）：
-簡短介紹（合理補全）：
-`
+            text: `請提供角色：${name} 的原神資料`
           }]
         }]
       }
     );
 
-    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    console.log("🔥 AI RAW:", JSON.stringify(res.data, null, 2));
+
+    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
 
   } catch (e) {
+    console.log("❌ AI ERROR:", e.response?.data || e.message);
     return null;
   }
 }
 
-// =========================
-// webhook
-// =========================
 module.exports = async (req, res) => {
   try {
 
@@ -51,13 +42,12 @@ module.exports = async (req, res) => {
         ? JSON.parse(req.body)
         : req.body;
 
-    const query =
-      body?.queryResult?.queryText?.trim();
+    const query = body?.queryResult?.queryText?.trim();
+
+    console.log("🟡 QUERY:", query);
 
     if (!query) {
-      return res.json({
-        fulfillmentText: "請輸入角色名稱"
-      });
+      return res.json({ fulfillmentText: "no query" });
     }
 
     const q = query.toLowerCase();
@@ -69,65 +59,50 @@ module.exports = async (req, res) => {
     );
 
     if (local) {
-      const [name, c] = local;
-
+      console.log("✅ HIT JSON");
       return res.json({
-        fulfillmentText:
-`角色：${name}
-英文：${c.english}
-稀有度：${c.rarity}★
-武器：${c.weapon}
-
-介紹：
-${c.description}`
+        fulfillmentText: `JSON命中：${local[0]}`
       });
     }
 
     // 2️⃣ API
     try {
-      const api = await axios.get(
-        "https://genshin.jmp.blue/characters",
-        { timeout: 3000 }
-      );
+      const api = await axios.get("https://genshin.jmp.blue/characters");
 
-      const found = api.data.find(c =>
-        c.toLowerCase() === q
-      );
+      const found = api.data.find(c => c.toLowerCase() === q);
 
       if (found) {
-        const d = await axios.get(
-          `https://genshin.jmp.blue/characters/${found}`,
-          { timeout: 3000 }
-        );
+        console.log("✅ HIT API");
 
         return res.json({
-          fulfillmentText:
-`角色：${d.data.name}
-元素：${d.data.vision}
-武器：${d.data.weapon}
-稀有度：${d.data.rarity}★`
+          fulfillmentText: `API命中：${found}`
         });
       }
-    } catch (e) {}
 
-    // 3️⃣ AI fallback（取代爬蟲）
+    } catch (e) {
+      console.log("❌ API ERROR");
+    }
+
+    // 3️⃣ AI
+    console.log("🟣 ENTER AI");
+
     const ai = await askAI(query);
+
+    console.log("🟣 AI RESULT:", ai);
 
     if (ai) {
       return res.json({
-        fulfillmentText:
-`（AI補全資料）
-
-${ai}`
+        fulfillmentText: ai
       });
     }
 
     return res.json({
-      fulfillmentText: `找不到角色：${query}`
+      fulfillmentText: "全部都沒命中"
     });
 
   } catch (e) {
     console.error(e);
+
     return res.json({
       fulfillmentText: "系統錯誤"
     });
