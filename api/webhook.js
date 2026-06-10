@@ -22,26 +22,29 @@ module.exports = async (req, res) => {
       c => c.toLowerCase() === text.toLowerCase()
     );
 
+    let reply = "";
+
     if (!found) {
-      return res.status(200).json({
-        reply: "找不到角色（輸入 furina）"
-      });
+      reply = "找不到角色（請輸入英文，例如 furina）";
+    } else {
+      const detail = await axios.get(
+        `https://genshin.jmp.blue/characters/${found}`
+      );
+
+      const d = detail.data;
+
+      reply =
+`角色：${d.name}
+元素：${d.vision}
+武器：${d.weapon}
+稀有度：${d.rarity}★`;
     }
 
-    const detail = await axios.get(
-      `https://genshin.jmp.blue/characters/${found}`
-    );
+    // 👉 先用最簡單方式回（LINE 之後再接）
+    return res.status(200).json({ reply });
 
-    return res.status(200).json({
-      reply:
-`角色：${detail.data.name}
-元素：${detail.data.vision}
-武器：${detail.data.weapon}
-稀有度：${detail.data.rarity}★`
-    });
-
-  } catch (err) {
-    console.error(err);
-    return res.status(200).send("handled error");
+  } catch (e) {
+    console.error(e);
+    return res.status(200).send("error handled");
   }
 };
