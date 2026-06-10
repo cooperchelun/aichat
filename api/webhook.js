@@ -2,6 +2,7 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
+// 讀取角色資料
 const characters = JSON.parse(
   fs.readFileSync(
     path.join(process.cwd(), "data", "character.json"),
@@ -9,13 +10,14 @@ const characters = JSON.parse(
   )
 );
 
-// 新增：讀取國家資料
+// 讀取國家資料
 const nations = JSON.parse(
   fs.readFileSync(
     path.join(process.cwd(), "data", "nation.json"),
     "utf8"
   )
 );
+
 const list = Object.entries(characters);
 
 // =========================
@@ -63,17 +65,16 @@ module.exports = async (req, res) => {
 
     if (!query) {
       return res.json({
-        fulfillmentText: "請輸入角色名稱"
+        fulfillmentText: "請輸入角色名稱或國家名稱"
       });
     }
 
     const q = query.toLowerCase();
 
-    // 1️⃣ JSON（支援 aliases 別名）
+    // 1️⃣ 角色搜尋（支援 aliases 別名）
     let local = null;
     
     for (const [name, c] of list) {
-      // 收集所有可搜尋關鍵字（中文名稱 + 英文 + 別名）
       const searchKeys = [
         name.toLowerCase(),
         c.english?.toLowerCase(),
@@ -101,7 +102,38 @@ ${c.description}`
       });
     }
 
-    // 2️⃣ API
+    // 2️⃣ 國家搜尋
+    let foundNation = null;
+    for (const [nationName, nationData] of Object.entries(nations)) {
+      const nationKeys = [
+        nationName.toLowerCase(),
+        nationData.english?.toLowerCase(),
+        ...(nationData.aliases || []).map(a => a.toLowerCase())
+      ];
+      if (nationKeys.includes(q)) {
+        foundNation = { name: nationName, data: nationData };
+        break;
+      }
+    }
+
+    if (foundNation) {
+      const { name, data } = foundNation;
+      const characterList = data.characters.join("、");
+      
+      return res.json({
+        fulfillmentText:
+`🏰 【${name}】
+
+${data.description}
+
+📋 所屬角色（${data.characters.length}位）：
+${characterList}
+
+💡 輸入角色名稱可查詢詳細資料`
+      });
+    }
+
+    // 3️⃣ 外部 API（genshin.jmp.blue）
     try {
       const api = await axios.get(
         "https://genshin.jmp.blue/characters",
@@ -128,7 +160,7 @@ ${c.description}`
       }
     } catch (e) {}
 
-    // 3️⃣ AI fallback（取代爬蟲）
+    // 4️⃣ AI fallback
     const ai = await askAI(query);
 
     if (ai) {
@@ -141,13 +173,7 @@ ${ai}`
     }
 
     return res.json({
-      fulfillmentText:
-    `目前系統未查到相關資訊。
-    
-    請確認是否有錯字，或輸入正確角色名稱。
-    
-    你也可以自行查詢官方圖鑑：
-    https://wiki.hoyolab.com/pc/genshin/home`
+      fulfillmentText: `找不到角色或國家：${query}`
     });
 
   } catch (e) {
