@@ -62,11 +62,22 @@ module.exports = async (req, res) => {
 
     const q = query.toLowerCase();
 
-    // 1️⃣ JSON
-    const local = list.find(([name, c]) =>
-      name.toLowerCase() === q ||
-      c.english?.toLowerCase() === q
-    );
+    // 1️⃣ JSON（支援 aliases 別名）
+    let local = null;
+    
+    for (const [name, c] of list) {
+      // 收集所有可搜尋關鍵字（中文名稱 + 英文 + 別名）
+      const searchKeys = [
+        name.toLowerCase(),
+        c.english?.toLowerCase(),
+        ...(c.aliases || []).map(a => a.toLowerCase())
+      ];
+      
+      if (searchKeys.includes(q)) {
+        local = [name, c];
+        break;
+      }
+    }
 
     if (local) {
       const [name, c] = local;
