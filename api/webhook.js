@@ -15,17 +15,25 @@ const characters = JSON.parse(
 const list = Object.entries(characters);
 
 // =========================
-// 💬 基礎聊天（規則優先）
+// 🧠 正規化（解決查不到問題關鍵）
+// =========================
+const normalize = (str) =>
+  (str || "")
+    .toLowerCase()
+    .replace(/\s/g, "");
+
+// =========================
+// 💬 基礎聊天（不靠AI）
 // =========================
 const chatReply = (text) => {
   const t = text.toLowerCase();
 
   if (t.includes("你好") || t.includes("嗨") || t.includes("hi")) {
-    return "你好！我是原神查詢助手，可以幫你查角色或聊原神 🙂";
+    return "你好！我是原神查詢助手 🙂";
   }
 
   if (t.includes("你是誰")) {
-    return "我是原神AI助手，可以查角色資料，也可以簡單聊天。";
+    return "我是原神AI助手，可以查角色、國家，也可以聊天。";
   }
 
   if (t.includes("謝謝")) {
@@ -33,19 +41,19 @@ const chatReply = (text) => {
   }
 
   if (t.includes("幫助") || t.includes("help")) {
-    return "你可以輸入：角色名稱 / 蒙德 / 璃月 / 或隨便聊天。";
+    return "可以輸入角色名稱（例如：芙寧娜、鍾離）或隨便聊天。";
   }
 
   return null;
 };
 
 // =========================
-// 🤖 Gemini 聊天（安全版）
+// 🤖 Gemini（已修正 404）
 // =========================
 async function chatWithGemini(text) {
   try {
     const res = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         contents: [
           {
@@ -56,9 +64,9 @@ async function chatWithGemini(text) {
 
 規則：
 - 優先回答原神相關問題
-- 保持簡短自然
-- 不要亂編不存在的角色資料
+- 不要亂編角色資料
 - 不確定就說不知道
+- 回答要簡短自然
 
 使用者：${text}
 `
@@ -73,7 +81,7 @@ async function chatWithGemini(text) {
       res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null
     );
   } catch (e) {
-    console.log("Gemini error:", e.message);
+    console.log("Gemini error:", e.response?.data || e.message);
     return null;
   }
 }
@@ -91,22 +99,20 @@ module.exports = async (req, res) => {
     const query = body?.queryResult?.queryText?.trim();
 
     if (!query) {
-      return res.json({
-        fulfillmentText: "請輸入內容"
-      });
+      return res.json({ fulfillmentText: "請輸入內容" });
     }
 
-    const q = query.toLowerCase();
+    const q = normalize(query);
 
     // =========================
-    // 1️⃣ JSON 查詢（角色）
+    // 1️⃣ JSON 查詢（已修正）
     // =========================
     let local = null;
 
     for (const [name, c] of list) {
       const keys = [
-        name.toLowerCase(),
-        c.english?.toLowerCase()
+        normalize(name),
+        normalize(c.english)
       ];
 
       if (keys.includes(q)) {
@@ -139,8 +145,8 @@ ${c.description}`
         { timeout: 3000 }
       );
 
-      const found = api.data.find(
-        c => c.toLowerCase() === q
+      const found = api.data.find(c =>
+        normalize(c) === q
       );
 
       if (found) {
@@ -160,7 +166,7 @@ ${c.description}`
     } catch (e) {}
 
     // =========================
-    // 3️⃣ 規則聊天
+    // 3️⃣ 基礎聊天
     // =========================
     const chat = chatReply(query);
     if (chat) {
@@ -168,14 +174,12 @@ ${c.description}`
     }
 
     // =========================
-    // 4️⃣ Gemini 聊天（最後 fallback）
+    // 4️⃣ Gemini 聊天（fallback）
     // =========================
     const aiReply = await chatWithGemini(query);
 
     if (aiReply) {
-      return res.json({
-        fulfillmentText: aiReply
-      });
+      return res.json({ fulfillmentText: aiReply });
     }
 
     // =========================
@@ -186,7 +190,7 @@ ${c.description}`
 `目前系統未查到相關資訊。
 
 請確認輸入是否正確，
-或改用角色名稱查詢。`
+或輸入角色名稱（例如：鍾離、芙寧娜）。`
     });
 
   } catch (e) {
