@@ -1,6 +1,9 @@
 {
   "name": "genshin-line-bot",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node api/webhook.js"
+  },
   "dependencies": {
     "@line/bot-sdk": "^9.2.0",
     "axios": "^1.7.0"
