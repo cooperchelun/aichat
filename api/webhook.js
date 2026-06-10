@@ -49,30 +49,20 @@ async function chatWithGemini(text) {
     const res = await axios.post(url, {
       contents: [
         {
-          parts: [
-            {
-              text: `
-你是一個原神助手聊天機器人。
-
-規則：
-- 優先回答原神
-- 不確定就說不知道
-- 不要亂編角色
-- 回答要簡短
-
-使用者：${text}
-`
-            }
-          ]
+          parts: [{ text }]
         }
       ]
     });
 
-    return (
-      res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null
-    );
+    console.log("✅ STATUS:", res.status);
+    console.log("✅ DATA:", JSON.stringify(res.data, null, 2));
+
+    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+
   } catch (e) {
-    console.log("Gemini error:", e.response?.data || e.message);
+    console.log("❌ GEMINI ERROR STATUS:", e.response?.status);
+    console.log("❌ GEMINI ERROR DATA:", e.response?.data);
+
     return null;
   }
 }
