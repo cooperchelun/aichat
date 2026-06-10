@@ -1,40 +1,106 @@
 const axios = require("axios");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const characters = require("../data/characters.json");
 
-// 初始化 Gemini (記得在環境變數設定 API_KEY)
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const list = Object.entries(characters);
 
 module.exports = async (req, res) => {
   try {
-    const userInput = req.body.queryResult?.queryText?.trim();
-    
-    // 1️⃣ 使用 Gemini 解析使用者的意圖 (例如：使用者說"那個拿水槍的很強的傢伙")
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const prompt = `使用者想查詢原神角色，請根據 "${userInput}" 回傳最可能的角色標準名稱（英文，如果找不到回傳 unknown）。`;
-    const result = await model.generateContent(prompt);
-    const identifiedName = result.response.text().trim().toLowerCase();
 
-    // 2️⃣ 進行爬蟲獲取資料
-    const list = await axios.get("https://genshin.jmp.blue/characters");
-    const found = list.data.find(c => c.toLowerCase() === identifiedName);
+    // =========================
+    // 🟢 防 Vercel / Dialogflow body 問題
+    // =========================
+    const body =
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body;
 
-    if (!found) {
-      return res.json({ fulfillmentText: "我查不到這個角色，你能再說清楚一點嗎？" });
+    const query =
+      body?.queryResult?.queryText?.trim();
+
+    if (!query) {
+      return res.json({
+        fulfillmentText: "請輸入角色名稱或條件"
+      });
     }
 
-    const detail = await axios.get(`https://genshin.jmp.blue/characters/${found}`);
-    const d = detail.data;
+    const q = query.toLowerCase();
 
-    // 3️⃣ 讓 Gemini 將資料包裝成更有趣的回答
-    const finalPrompt = `請用原神角色 ${d.name} 的口吻或以遊戲導航員的身分，根據這些資料：${JSON.stringify(d)}，寫一段有趣的簡介回答使用者。`;
-    const response = await model.generateContent(finalPrompt);
+    // =========================
+    // 1️⃣ 本地 JSON（最高優先）
+    // =========================
+    const local = list.find(([name, c]) =>
+      name.toLowerCase() === q ||
+      c.english?.toLowerCase() === q
+    );
 
+    if (local) {
+      const [name, c] = local;
+
+      return res.json({
+        fulfillmentText:
+`角色：${name}
+英文：${c.english}
+稀有度：${c.rarity}★
+武器：${c.weapon}
+
+介紹：
+${c.description}`
+      });
+    }
+
+    // =========================
+    // 2️⃣ 官方 API（備用）
+    // =========================
+    try {
+
+      const apiList = await axios.get(
+        "https://genshin.jmp.blue/characters",
+        { timeout: 3000 }
+      );
+
+      const found = apiList.data.find(c =>
+        c.toLowerCase() === q
+      );
+
+      if (found) {
+
+        const d = await axios.get(
+          `https://genshin.jmp.blue/characters/${found}`,
+          { timeout: 3000 }
+        );
+
+        return res.json({
+          fulfillmentText:
+`角色：${d.data.name}
+元素：${d.data.vision}
+武器：${d.data.weapon}
+稀有度：${d.data.rarity}★`
+        });
+      }
+
+    } catch (e) {
+      // API 壞掉不影響主流程
+    }
+
+    // =========================
+    // 3️⃣ 找不到
+    // =========================
     return res.json({
-      fulfillmentText: response.response.text()
+      fulfillmentText:
+`找不到角色或資料：
+${query}
+
+請確認名稱，例如：
+- 尼可
+- Furina
+- 鍾離`
     });
 
   } catch (e) {
     console.error(e);
-    return res.json({ fulfillmentText: "系統故障了，請稍後再試。" });
+
+    return res.json({
+      fulfillmentText: "系統錯誤，請稍後再試"
+    });
   }
 };
