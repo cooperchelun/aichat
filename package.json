@@ -1,8 +1,8 @@
 {
-  "name": "genshin-dialogflow-webhook",
+  "name": "genshin-line-bot",
   "version": "1.0.0",
-  "main": "api/webhook.js",
   "dependencies": {
-    "dialogflow-fulfillment": "^0.6.1"
+    "@line/bot-sdk": "^9.2.0",
+    "axios": "^1.7.0"
   }
 }
