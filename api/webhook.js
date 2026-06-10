@@ -134,7 +134,13 @@ ${ai}`
     }
 
     return res.json({
-      fulfillmentText: `找不到角色：${query}`
+      fulfillmentText:
+    `目前系統未查到相關資訊。
+    
+    請確認是否有錯字，或輸入正確角色名稱。
+    
+    你也可以自行查詢官方圖鑑：
+    https://wiki.hoyolab.com/pc/genshin/home`
     });
 
   } catch (e) {
