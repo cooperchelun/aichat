@@ -1,0 +1,8 @@
+{
+  "name": "genshin-dialogflow-webhook",
+  "version": "1.0.0",
+  "main": "api/webhook.js",
+  "dependencies": {
+    "dialogflow-fulfillment": "^0.6.1"
+  }
+}
