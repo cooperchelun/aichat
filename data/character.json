@@ -2,6 +2,7 @@
   "洛恩": {
     "english": "Lohen",
     "aliases": ["lohen", "loen", "羅恩"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "西風騎士團遠程小隊副隊長，行事不拘一格，鍾情於非常規戰術的騎士。"
@@ -9,6 +10,7 @@
   "尼可": {
     "english": "Nicole",
     "aliases": ["nicole", "妮可"],
+    "element": "火",
     "rarity": 5,
     "weapon": "法器",
     "description": "無言的「魔女」，棄聲的「天使」。"
@@ -16,6 +18,7 @@
   "布倫妮": {
     "english": "Prune",
     "aliases": ["prune", "魔女獵人"],
+    "element": "風",
     "rarity": 4,
     "weapon": "法器",
     "description": "小小的「魔女獵人」。從挪德卡萊跋涉而來，只為了討伐那位在她口中以大欺、無惡不作的魔女。"
@@ -23,6 +26,7 @@
   "莉奈婭": {
     "english": "Linnea",
     "aliases": ["linnea", "博物學家"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "弓",
     "description": "冒險家協會挪德卡萊分會顧問，博物學家。"
@@ -30,13 +34,15 @@
   "法爾伽": {
     "english": "Varka",
     "aliases": ["varka", "大團長", "北風騎士"],
+    "element": "風",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "西風騎士團大團長，守護蒙德的北風騎士。"
   },
   "兹白": {
     "english": "Zibai",
-    "aliases": ["zibai", "白馬仙人"],
+    "aliases": ["zibai", "白馬仙人", "白馬", "仙人"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "璃月傳說中的白馬仙人，其名為茲白，璃月仙話中最神秘的一位。"
@@ -44,6 +50,7 @@
   "葉洛亞": {
     "english": "Illuga",
     "aliases": ["illuga", "魘夜之鶯", "執燈人"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "調查分隊「魘夜之鶯」成員，執燈人最年輕的分隊長。"
@@ -51,6 +58,7 @@
   "哥倫比亞": {
     "english": "Columbina",
     "aliases": ["columbina", "哥倫比亞", "月之少女", "空月"],
+    "element": "水",
     "rarity": 5,
     "weapon": "法器",
     "description": "於挪德卡萊誕生的「月之少女」，亦是歸鄉的空月。"
@@ -58,6 +66,7 @@
   "杜林": {
     "english": "Durin",
     "aliases": ["durin"],
+    "element": "火",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "在魔女M筆下誕生的龍，最後來到了人類的世界。而他的「故事」，也仍在繼續。"
@@ -65,6 +74,7 @@
   "雅珂達": {
     "english": "Jahoda",
     "aliases": ["jahoda", "秘聞館"],
+    "element": "風",
     "rarity": 4,
     "weapon": "弓",
     "description": "十分可靠，無所不能（自稱）的「秘聞館」員工。"
@@ -72,6 +82,7 @@
   "奈芙爾": {
     "english": "Nefer",
     "aliases": ["nefer", "秘聞館之主"],
+    "element": "草",
     "rarity": 5,
     "weapon": "法器",
     "description": "神通廣大的「秘聞館」之主。"
@@ -79,6 +90,7 @@
   "菲林斯": {
     "english": "Flins",
     "aliases": ["flins", "執燈人"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "挪德卡萊的「執燈人」，守護北方小島上的燈塔與墓園。一位言行舉止極富修養的神秘紳士。"
@@ -86,6 +98,7 @@
   "菈烏瑪": {
     "english": "Lauma",
     "aliases": ["lauma", "聖女", "霜月之子"],
+    "element": "草",
     "rarity": 5,
     "weapon": "法器",
     "description": "被月光與森林祝福的聖女，一個誕生在「霜月之子」的希望。"
@@ -93,6 +106,7 @@
   "愛諾": {
     "english": "Aino",
     "aliases": ["aino", "機械發明家"],
+    "element": "水",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "挪德卡萊的天才機械發明家，喜歡有趣的機械和甜食。"
@@ -100,6 +114,7 @@
   "伊涅芙": {
     "english": "Ineffa",
     "aliases": ["ineffa", "機器人"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "整合了各國機關零件的全能型機器人，胸口處的秘源核心已歷經彌久歲月。"
@@ -107,6 +122,7 @@
   "絲柯克": {
     "english": "Skirk",
     "aliases": ["skirk", "達達利亞師父"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "曾現身於深淵裂縫和原始胎海的來訪者，教導達達利亞武技的老師。孤身一人的女武者。"
@@ -114,6 +130,7 @@
   "塔利雅": {
     "english": "Dahlia",
     "aliases": ["dahlia", "助祭"],
+    "element": "水",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "西風教會的助祭，風神在教會的代行人。"
@@ -121,6 +138,7 @@
   "愛可菲": {
     "english": "Escoffier",
     "aliases": ["escoffier", "大廚", "甜點大校"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "聞名楓丹的前德波大飯店主廚，有著「甜點大校」榮譽的「技術料理」先驅，對烹飪的要求無比嚴格。"
@@ -128,6 +146,7 @@
   "伊法": {
     "english": "Ifa",
     "aliases": ["ifa", "獸醫"],
+    "element": "風",
     "rarity": 4,
     "weapon": "法器",
     "description": "來自花羽會的獸醫，由衷熱愛與人、動物，以及其他生靈為伴的生活。"
@@ -135,6 +154,7 @@
   "瓦雷莎": {
     "english": "Varesa",
     "aliases": ["varesa", "沃陸之邦"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "法器",
     "description": "悠悠哉哉，無比鬆弛的「沃陸之邦」戰士兼果園主，喜歡充滿力量的英雄，還有巨量美食！"
@@ -142,6 +162,7 @@
   "伊安珊": {
     "english": "Iansan",
     "aliases": ["iansan", "教練", "營養師"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "沃陸之邦健身俱樂部的總教練，聞名納塔的營養師。"
@@ -149,6 +170,7 @@
   "夢見月瑞希": {
     "english": "Yumemizuki Mizuki",
     "aliases": ["yumemizuki mizuki", "瑞希", "心理診療師", "夢貘"],
+    "element": "風",
     "rarity": 5,
     "weapon": "法器",
     "description": "「秋沙錢湯」的股東，夢貘一族的心理診療師，致力於驅散惡夢，為人們帶來安寧的心境。"
@@ -156,13 +178,15 @@
   "藍硯": {
     "english": "Lan Yan",
     "aliases": ["lan yan", "藤編師"],
+    "element": "風",
     "rarity": 4,
     "weapon": "法器",
     "description": "沉玉谷來的藤編師，神清骨秀，像山間清泉一般靈動。"
   },
   "瑪薇卡": {
     "english": "Mavuika",
-    "aliases": ["mavuika", "納塔領袖", "基揚戈茲", "火神"],
+    "aliases": ["mavuika", "納塔領袖", "基揚戈茲"],
+    "element": "火",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "納塔的領袖，繼承「基揚戈茲」之古名，誓以聖火為戰爭國度照亮未來。"
@@ -170,6 +194,7 @@
   "茜特菈莉": {
     "english": "Citlali",
     "aliases": ["citlali", "茜特拉莉", "黑曜石奶奶", "大薩滿"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "法器",
     "description": "煙謎主的大薩滿，令所有族人敬畏的黑曜石奶奶。"
@@ -177,6 +202,7 @@
   "恰斯卡": {
     "english": "Chasca",
     "aliases": ["chasca", "調停人"],
+    "element": "風",
     "rarity": 5,
     "weapon": "弓",
     "description": "特拉洛坎的「調停人」，千萬爭端的終結者。"
@@ -184,6 +210,7 @@
   "歐洛倫": {
     "english": "Ororon",
     "aliases": ["ororon"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "弓",
     "description": "來自煙謎主的年輕人，卻與千萬生靈一起，生活在原野之中。"
@@ -191,6 +218,7 @@
   "希諾寧": {
     "english": "Xilonen",
     "aliases": ["xilonen", "鑄名師"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "納茨卡延的鑄名師，善於在工作的重擔與舒適的生活之間找到平衡。"
@@ -198,6 +226,7 @@
   "基尼奇": {
     "english": "Kinich",
     "aliases": ["kinich", "獵龍人"],
+    "element": "草",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "維茲特蘭的獵龍人，精於度量代價。"
@@ -205,6 +234,7 @@
   "瑪拉妮": {
     "english": "Mualani",
     "aliases": ["mualani", "嚮導", "逐浪客"],
+    "element": "水",
     "rarity": 5,
     "weapon": "法器",
     "description": "納塔遠近聞名的嚮導，水上用品商店的經營者，精通各類水上運動的逐浪客。"
@@ -212,6 +242,7 @@
   "卡齊娜": {
     "english": "Kachina",
     "aliases": ["kachina", "烏沙博蒂"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "納茨卡延的年輕戰士，受賜古名「烏沙博蒂」。善良執著的少女，在挫折中不斷成長。"
@@ -219,6 +250,7 @@
   "艾梅莉埃": {
     "english": "Emilie",
     "aliases": ["emilie", "香水設計師"],
+    "element": "草",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "楓丹香水設計師，將秘密藏於瓶中之人。"
@@ -226,6 +258,7 @@
   "希格雯": {
     "english": "Sigewinne",
     "aliases": ["sigewinne", "西格雯", "西格紋", "護士長", "美露莘護士長"],
+    "element": "水",
     "rarity": 5,
     "weapon": "弓",
     "description": "梅洛彼得堡的美露莘護士長，平等地關愛著海底監牢中的每個罪人。"
@@ -233,6 +266,7 @@
   "克洛琳德": {
     "english": "Clorinde",
     "aliases": ["clorinde", "決鬥代理人"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "不敗的決鬥代理人。以手中的劍維護楓丹廷的「公義」。"
@@ -240,6 +274,7 @@
   "賽索斯": {
     "english": "Sethos",
     "aliases": ["sethos", "緘默之殿"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "弓",
     "description": "緘默之殿的繼承者。背負著秘密，自沙中而來。"
@@ -247,6 +282,7 @@
   "阿蕾奇諾": {
     "english": "Arlecchino",
     "aliases": ["arlecchino", "僕人", "父親", "第四席", "愚人眾第四席"],
+    "element": "火",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "愚人眾執行官第四席，「僕人」。沈靜冷酷的外交官，「壁爐之家」所有孩子們畏懼又依賴的「父親」。"
@@ -254,6 +290,7 @@
   "千織": {
     "english": "Chiori",
     "aliases": ["chiori", "千織屋"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "「千織屋」的老闆。楓丹著名服裝設計師。"
@@ -261,6 +298,7 @@
   "閒雲": {
     "english": "Xianyun",
     "aliases": ["xianyun", "留雲借風真君", "留雲", "真君"],
+    "element": "風",
     "rarity": 5,
     "weapon": "法器",
     "description": "絕雲仙眾「三眼五顯仙人」之一，雅號「留雲藉風真君」。擅使機關奇術，心向紅塵煙火，正以「閒雲」之名行走人間。"
@@ -268,6 +306,7 @@
   "嘉明": {
     "english": "Gaming",
     "aliases": ["gaming", "劍匣鏢局"],
+    "element": "火",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "劍匣鏢局的鏢師，威水舞獸隊的話事人。"
@@ -275,41 +314,47 @@
   "夏沃蕾": {
     "english": "Chevreuse",
     "aliases": ["chevreuse", "特巡隊隊長"],
+    "element": "火",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "時刻恪守著心中「正義」的特巡隊隊長，手中的鐧槍只會指向負罪之人。"
   },
   "娜維婭": {
     "english": "Navia",
-    "aliases": ["navia", "刺玫會會長", "大小姐"],
+    "aliases": ["navia", "刺玫會會長"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "刺玫會現任會長，一位可愛、盡責的好老闆。"
   },
   "芙寧娜": {
     "english": "Furina",
-    "aliases": ["furina", "芙芙", "水神", "芙卡洛斯"],
+    "aliases": ["furina", "芙芙", "水神"],
+    "element": "水",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "審判舞台上的絕對焦點，直至謝幕的掌聲響起。"
   },
   "夏洛蒂": {
     "english": "Charlotte",
-    "aliases": ["charlotte", "記者", "蒸氣鳥報", "記者小姐"],
+    "aliases": ["charlotte", "記者", "蒸氣鳥報"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "法器",
     "description": "充滿活力的蒸氣鳥報記者，每時每刻都在為「真相」奔走。"
   },
   "萊歐斯利": {
     "english": "Wriothesley",
-    "aliases": ["wriothesley", "公爵", "梅洛彼得堡", "典獄長"],
+    "aliases": ["wriothesley", "公爵", "梅洛彼得堡"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "法器",
     "description": "梅洛彼得堡的公爵，隱於漆黑海底的領主。"
   },
   "那維萊特": {
     "english": "Neuvillette",
-    "aliases": ["neuvillette", "最高審判官", "水龍", "水龍王", "龍王"],
+    "aliases": ["neuvillette", "最高審判官", "水龍"],
+    "element": "水",
     "rarity": 5,
     "weapon": "法器",
     "description": "楓丹的最高審判官，因其無懈可擊的「秉公無私」而聞名。"
@@ -317,6 +362,7 @@
   "菲米尼": {
     "english": "Freminet",
     "aliases": ["freminet", "潛水"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "精於潛水的寡言少年，在如寒冰般拒人千里的外表下，藏有一顆無瑕的純真之心。"
@@ -324,6 +370,7 @@
   "林尼": {
     "english": "Lyney",
     "aliases": ["lyney", "魔術師"],
+    "element": "火",
     "rarity": 5,
     "weapon": "弓",
     "description": "伶牙俐齒，演技精湛的著名楓丹魔術師，以精妙的手法和言語牽動著觀眾的心。"
@@ -331,6 +378,7 @@
   "琳妮特": {
     "english": "Lynette",
     "aliases": ["lynette", "魔術助手"],
+    "element": "風",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "寡言少語，罕有表情的魔術助手，性情像貓一樣難以猜測。"
@@ -338,6 +386,7 @@
   "綺良良": {
     "english": "Kirara",
     "aliases": ["kirara", "貓又", "狛荷屋"],
+    "element": "草",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "稻妻快遞公司「狛荷屋」的送貨員，一隻熱愛自己工作、嚮往人類社會的「貓又」。"
@@ -345,6 +394,7 @@
   "白術": {
     "english": "Baizhu",
     "aliases": ["baizhu", "不卜廬", "長生"],
+    "element": "草",
     "rarity": 5,
     "weapon": "法器",
     "description": "藥廬「不卜廬」的主人，隨身懸掛著名為「長生」的白蛇。精於藥石，深於城府。"
@@ -352,6 +402,7 @@
   "卡維": {
     "english": "Kaveh",
     "aliases": ["kaveh", "建築師"],
+    "element": "草",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "須彌著名建築設計師，對太多事物抱持過度關懷心。美學主義者，為現實所困擾。"
@@ -359,6 +410,7 @@
   "米卡": {
     "english": "Mika",
     "aliases": ["mika", "測繪員"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "平凡家庭出身的年輕騎士，在小隊中擔任「前進測繪員」一職。為人低調，謹慎小心。"
@@ -366,6 +418,7 @@
   "迪希雅": {
     "english": "Dehya",
     "aliases": ["dehya", "鍍金旅團"],
+    "element": "火",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "橫行須彌沙漠地傭兵組織「鍍金旅團」的成員，勇敢而強大的戰士，在「鍍金旅團」內部聲名赫赫。"
@@ -373,6 +426,7 @@
   "艾爾海森": {
     "english": "Alhaitham",
     "aliases": ["alhaitham", "書記官"],
+    "element": "草",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "須彌教令院現任書記官，有過人的智慧與才能。生活得自由自在，一般人基本上找不到他。"
@@ -380,6 +434,7 @@
   "瑤瑤": {
     "english": "Yaoyao",
     "aliases": ["yaoyao"],
+    "element": "草",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "歌塵浪市真君膝下最年幼的弟子，溫柔體貼的「小大人」。"
@@ -387,6 +442,7 @@
   "流浪者": {
     "english": "Wanderer",
     "aliases": ["wanderer", "散兵", "國崩", "斯卡拉姆齊"],
+    "element": "風",
     "rarity": 5,
     "weapon": "法器",
     "description": "身份成謎的流浪人士。衣著打扮像是修驗者，言行卻不是修驗者應有的模樣。"
@@ -394,20 +450,23 @@
   "琺露珊": {
     "english": "Faruzan",
     "aliases": ["faruzan", "前輩"],
+    "element": "風",
     "rarity": 4,
     "weapon": "弓",
     "description": "來自「一百年前」的學者，喜歡以前輩自居，對各類古老文字與古典機關都頗有研究。"
   },
   "莱依拉": {
     "english": "Layla",
-    "aliases": ["layla", "雙重人格"],
+    "aliases": ["layla"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "專攻理論星相學的梨多梵諦學院學生。時常夢遊，長期缺覺，飽受睡眠問題困擾。"
   },
   "納西妲": {
     "english": "Nahida",
-    "aliases": ["nahida", "小草神", "草神", "小吉祥草王", "布耶爾"],
+    "aliases": ["nahida", "小草神", "草神", "小吉祥草王"],
+    "element": "草",
     "rarity": 5,
     "weapon": "法器",
     "description": "深居淨善宮的籠中之鳥，只能在夢中將世界盡收眼底。"
@@ -415,6 +474,7 @@
   "妮露": {
     "english": "Nilou",
     "aliases": ["nilou", "舞者"],
+    "element": "水",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "祖拜爾劇場的知名舞者，舞姿靈動優美，為人純真親善。"
@@ -422,6 +482,7 @@
   "賽諾": {
     "english": "Cyno",
     "aliases": ["cyno", "大風紀官"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "教令院內負責監督學者們的「大風紀官」。工作時比剎訶伐羅學院製作的「大風機關」更有效率。"
@@ -429,13 +490,15 @@
   "坎蒂絲": {
     "english": "Candace",
     "aliases": ["candace", "阿如村守護者"],
+    "element": "水",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "有著琥珀色左眼的赤王后裔，阿如村的守護者。"
   },
   "多莉": {
     "english": "Dori",
-    "aliases": ["dori", "旅行百貨商人", "桑歌馬哈巴依老爺"],
+    "aliases": ["dori", "旅行百貨商人"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "神出鬼沒的旅行百貨商人，最喜歡亮閃閃的摩拉。"
@@ -443,6 +506,7 @@
   "提納裡": {
     "english": "Tighnari",
     "aliases": ["tighnari", "巡林官"],
+    "element": "草",
     "rarity": 5,
     "weapon": "弓",
     "description": "精通植物學的少年學者，現於道成林擔任巡林官一職。直率熱忱，擅長教導腦瓜糊塗的人。"
@@ -450,6 +514,7 @@
   "柯萊": {
     "english": "Collei",
     "aliases": ["collei", "見習巡林員"],
+    "element": "草",
     "rarity": 4,
     "weapon": "弓",
     "description": "活躍於道成林的見習巡林員，熱情的言行背後是一顆依舊稍顯內向的心。"
@@ -457,6 +522,7 @@
   "鹿野院平藏": {
     "english": "Shikanoin Heizou",
     "aliases": ["shikanoin heizou", "平藏", "偵探"],
+    "element": "風",
     "rarity": 4,
     "weapon": "法器",
     "description": "天領奉行的天才少年偵探，直覺敏銳，心思玲瓏。"
@@ -464,6 +530,7 @@
   "久岐忍": {
     "english": "Kuki Shinobu",
     "aliases": ["kuki shinobu", "久岐忍", "阿忍"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "幹練可靠的「荒瀧派」的副手－特別註明：幹練可靠形容的不是「荒瀧派」而是副手。"
@@ -471,6 +538,7 @@
   "夜蘭": {
     "english": "Yelan",
     "aliases": ["yelan", "夜兰"],
+    "element": "水",
     "rarity": 5,
     "weapon": "弓",
     "description": "自稱任職於總務司的神祕人士，卻又是總務司名錄裡的「不存在之人」。"
@@ -478,6 +546,7 @@
   "神裡綾人": {
     "english": "Kamisato Ayato",
     "aliases": ["kamisato ayato", "綾人", "社奉行"],
+    "element": "水",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "社奉行神裡家年輕有為的現任家主，為人溫雅有禮，處事頗有手段。"
@@ -485,6 +554,7 @@
   "八重神子": {
     "english": "Yae Miko",
     "aliases": ["yae miko", "八重", "神子", "宮司大人"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "法器",
     "description": "鳴神大社的宮司大人，兼任「八重堂」總編。艷麗動人的外表下藏著令人意想不到的聰慧與狡黠。"
@@ -492,6 +562,7 @@
   "申鹤": {
     "english": "Shenhe",
     "aliases": ["shenhe", "申鶴", "仙家子弟"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "氣質出塵的仙家子弟。隱修在璃月群山之間，個性也如仙人般淡漠疏離。"
@@ -499,13 +570,15 @@
   "雲堇": {
     "english": "Yun Jin",
     "aliases": ["yun jin", "雲堇", "戲曲名角"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "集劇作與演唱能力於一身的璃月戲曲名角。風格自成一派，雅緻柔美，恰如其人。"
   },
   "荒瀧一斗": {
     "english": "Arataki Itto",
-    "aliases": ["arataki itto", "一斗", "荒瀧派", "itto"],
+    "aliases": ["arataki itto", "一斗", "荒瀧派"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "活躍於稻妻城花見坂的「荒瀧派」初代目頭領。什麼，從來沒聽過荒瀧派？你是想找碴嗎？"
@@ -513,6 +586,7 @@
   "五郎": {
     "english": "Gorou",
     "aliases": ["gorou", "五郎", "大將"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "弓",
     "description": "海祇島軍的大將，深受部下信賴。"
@@ -520,6 +594,7 @@
   "托馬": {
     "english": "Thoma",
     "aliases": ["thoma", "托馬", "家政官"],
+    "element": "火",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "神裡家的家政官，活躍在稻妻的「地頭蛇」。"
@@ -527,6 +602,7 @@
   "珊瑚宫心海": {
     "english": "Sangonomiya Kokomi",
     "aliases": ["sangonomiya kokomi", "心海", "現人神巫女"],
+    "element": "水",
     "rarity": 5,
     "weapon": "法器",
     "description": "海衹島的「現人神巫女」，統管海祇島各項事宜的少女。"
@@ -534,6 +610,7 @@
   "亞蘿伊": {
     "english": "Aloy",
     "aliases": ["aloy", "亞蘿伊"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "弓",
     "description": "曾經是流亡者，如今則是無比機敏的獵人。隨時準備為了正當之事而挽弓放箭。"
@@ -541,6 +618,7 @@
   "雷電將軍": {
     "english": "Raiden Shogun",
     "aliases": ["raiden shogun", "雷神", "將軍", "影", "巴爾澤布"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "其身為禦建鳴神主尊大禦所大人，許稻妻人民以亙古不變之「永恆」。"
@@ -548,13 +626,15 @@
   "九條裟羅": {
     "english": "Kujou Sara",
     "aliases": ["kujou sara", "九條", "裟羅", "天領奉行大將"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "弓",
     "description": "「天領奉行」的大將，殺伐果斷，驍勇善戰。"
   },
   "宵宮": {
     "english": "Yoimiya",
-    "aliases": ["yoimiya", "宵宮", "夏祭的女王", "長野原煙火店", "煙火"],
+    "aliases": ["yoimiya", "宵宮", "夏祭的女王", "長野原煙火店"],
+    "element": "火",
     "rarity": 5,
     "weapon": "弓",
     "description": "「長野原煙火店」店長，「夏祭的女王」，將人們的願望寄託於煙火中的能工巧匠。"
@@ -562,13 +642,15 @@
   "早柚": {
     "english": "Sayu",
     "aliases": ["sayu", "早柚", "忍者"],
+    "element": "風",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "屬於「終末番」的忍者。身形小巧，總像沒睡飽一樣。"
   },
   "神裡綾華": {
     "english": "Kamisato Ayaka",
-    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐", "白鷺公主"],
+    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "稻妻「社奉行」神裡家的大小姐。端莊而文雅，聰慧又堅韌。"
@@ -576,13 +658,15 @@
   "楓原萬葉": {
     "english": "Kaedehara Kazuha",
     "aliases": ["kaedehara kazuha", "萬葉", "浪人武士"],
+    "element": "風",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "來自稻妻的浪人武士，如今棲身於璃月船隊「南十字」。性情溫和而灑脫，心中埋藏著許多往事。"
   },
   "優菈": {
     "english": "Eula",
-    "aliases": ["eula", "優菈", "浪花騎士", "勞倫斯"],
+    "aliases": ["eula", "優菈", "浪花騎士"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "古老家族出身的「浪花騎士」，西風騎士團遊擊小隊隊長。身為舊貴族後裔卻加入了堪稱死對頭的西風騎士團，至今仍是蒙德一大謎團。"
@@ -590,6 +674,7 @@
   "煙緋": {
     "english": "Yanfei",
     "aliases": ["yanfei", "煙緋", "律法諮商師"],
+    "element": "火",
     "rarity": 4,
     "weapon": "法器",
     "description": "活躍在璃月港的知名律法諮商師，混有仙獸血脈的精明少女。"
@@ -597,13 +682,15 @@
   "羅莎莉亞": {
     "english": "Rosaria",
     "aliases": ["rosaria", "羅莎莉亞", "修女"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "除了打扮哪裡都不像神職人員的修女。冷淡的言行中透著銳利。總是單獨行動。"
   },
   "胡桃": {
     "english": "Hu Tao",
-    "aliases": ["hu tao", "胡桃", "往生堂堂主", "堂主"],
+    "aliases": ["hu tao", "胡桃", "往生堂堂主"],
+    "element": "火",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "「往生堂」七十七代堂主，年紀輕輕就已主掌璃月的葬儀事務。"
@@ -611,6 +698,7 @@
   "魈": {
     "english": "Xiao",
     "aliases": ["xiao", "魈", "降魔大聖", "護法夜叉大將"],
+    "element": "風",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "守護璃月的仙人，「夜叉」。美號「降魔大聖」，妙稱「護法夜叉大將」。"
@@ -618,6 +706,7 @@
   "甘雨": {
     "english": "Ganyu",
     "aliases": ["ganyu", "甘雨", "月海亭秘書", "麒麟"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "弓",
     "description": "月海亭的秘書，體內流著仙獸「麒麟」的血脈。"
@@ -625,13 +714,15 @@
   "阿貝多": {
     "english": "Albedo",
     "aliases": ["albedo", "阿貝多", "白堊之子"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "西風騎士團首席煉金術師兼調查小隊隊長，被稱為「白堊之子」的天才。"
   },
   "鍾離": {
     "english": "Zhongli",
-    "aliases": ["zhongli", "鐘離", "岩神", "客卿", "摩拉克斯"],
+    "aliases": ["zhongli", "鐘離", "岩神", "客卿"],
+    "element": "岩",
     "rarity": 5,
     "weapon": "長柄武器",
     "description": "被「往生堂」請來的神祕客卿，知識淵博，對各種事物都頗有見地。"
@@ -639,6 +730,7 @@
   "辛焱": {
     "english": "Xinyan",
     "aliases": ["xinyan", "辛焱", "搖滾歌手"],
+    "element": "火",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "璃月港唯一的搖滾歌手，以音樂和熱情歌頌著對「成見」的反抗。"
@@ -646,6 +738,7 @@
   "達達利亞": {
     "english": "Tartaglia",
     "aliases": ["tartaglia", "達達利亞", "公子", "愚人眾第十一席"],
+    "element": "水",
     "rarity": 5,
     "weapon": "弓",
     "description": "愚人眾執行官第十一位，「公子」，其戰績威名遠揚。"
@@ -653,6 +746,7 @@
   "迪奧娜": {
     "english": "Diona",
     "aliases": ["diona", "迪奧娜", "貓尾酒館", "調酒師"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "弓",
     "description": "遺傳了稀薄的「非人類」血統的少女，「貓尾酒館」的超人氣調酒師。"
@@ -660,13 +754,15 @@
   "可莉": {
     "english": "Klee",
     "aliases": ["klee", "可莉", "逃跑的太陽", "爆破大師"],
+    "element": "火",
     "rarity": 5,
     "weapon": "法器",
     "description": "西風騎士團禁閉室的常客，蒙德的爆破大師。人稱「逃跑的太陽」。"
   },
   "溫迪": {
     "english": "Venti",
-    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯", "酒鬼"],
+    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯"],
+    "element": "風",
     "rarity": 5,
     "weapon": "弓",
     "description": "蒙德城諸多吟遊詩人中的一位，自由自在地穿梭在街頭巷尾。"
@@ -674,6 +770,7 @@
   "琴": {
     "english": "Jean",
     "aliases": ["jean", "琴", "蒲公英騎士", "代理團長"],
+    "element": "風",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "正直嚴謹的蒲公英騎士，蒙德西風騎士團的代理團長。"
@@ -681,13 +778,15 @@
   "刻晴": {
     "english": "Keqing",
     "aliases": ["keqing", "刻晴", "玉衡星"],
+    "element": "雷",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "璃月七星之一，玉衡星。對「帝君一言而決的璃月」頗有微詞──但實際上，神挺欣賞她這樣的人。"
   },
   "迪盧克": {
     "english": "Diluc",
-    "aliases": ["diluc", "迪盧克", "晨曦酒莊"],
+    "aliases": ["diluc", "迪盧克", "貴公子", "晨曦酒莊"],
+    "element": "火",
     "rarity": 5,
     "weapon": "雙手劍",
     "description": "坐擁蒙德大半酒業的貴公子，財力、人望、能力都令人無法小覷。"
@@ -695,6 +794,7 @@
   "莫娜": {
     "english": "Mona",
     "aliases": ["mona", "莫娜", "占星術士"],
+    "element": "水",
     "rarity": 5,
     "weapon": "法器",
     "description": "神秘的少女占星術士，聲稱自己是「偉大的占星術士莫娜」，擁有與名號相符的不俗實力，博學而高傲。"
@@ -702,6 +802,7 @@
   "七七": {
     "english": "Qiqi",
     "aliases": ["qiqi", "七七", "殭屍", "不卜廬採藥女孩"],
+    "element": "冰",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "藥廬「不卜廬」的採藥女孩兼學徒，蒼白如紙的不死之人。話很少，也沒有什麼表情。曾因「仙緣」而擁有了被凡間稱作殭屍的不死之身，外表永遠停留在了逝去那年，年齡不可考。"
@@ -709,6 +810,7 @@
   "砂糖": {
     "english": "Sucrose",
     "aliases": ["sucrose", "糖", "煉金術士", "生物煉金"],
+    "element": "風",
     "rarity": 4,
     "weapon": "法器",
     "description": "對萬物充滿好奇的煉金術士，「生物鍊金」學派的研究者。"
@@ -716,6 +818,7 @@
   "北斗": {
     "english": "Beidou",
     "aliases": ["beidou", "大姐頭", "南十字首領"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "武裝船隊「南十字」的首領，豪快的大姊頭。"
@@ -723,6 +826,7 @@
   "雷澤": {
     "english": "Razor",
     "aliases": ["razor", "狼少年", "奔狼領"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "住在蒙德地區奔狼領，遠離城市與人群，和狼一同生活的少年。直覺銳利，身姿迅捷。"
@@ -730,13 +834,15 @@
   "菲謝爾": {
     "english": "Fischl",
     "aliases": ["fischl", "菲謝爾", "皇女", "斷罪之皇女", "奧茲"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "弓",
     "description": "自稱「斷罪之皇女」，與名為奧茲的漆黑夜鴉同行的神秘少女。"
   },
   "麗莎": {
     "english": "Lisa",
-    "aliases": ["lisa", "圖書館理員", "天才"],
+    "aliases": ["lisa", "圖書館員", "天才"],
+    "element": "雷",
     "rarity": 4,
     "weapon": "法器",
     "description": "慵懶而博學的圖書館員，須彌教令院「兩百年一見」的天才畢業生。"
@@ -744,6 +850,7 @@
   "香菱": {
     "english": "Xiangling",
     "aliases": ["xiangling", "廚師", "萬民堂"],
+    "element": "火",
     "rarity": 4,
     "weapon": "長柄武器",
     "description": "來自璃月，名聲在外的少女廚師，對料理之道極具熱情，拿手麻辣菜餚堪稱一絕。"
@@ -751,6 +858,7 @@
   "安柏": {
     "english": "Amber",
     "aliases": ["amber", "偵察騎士", "兔兔伯爵"],
+    "element": "火",
     "rarity": 4,
     "weapon": "弓",
     "description": "永遠充滿活力的女孩，騎士團最優秀，同時也是最後的偵察騎士。"
@@ -758,6 +866,7 @@
   "班尼特": {
     "english": "Bennett",
     "aliases": ["bennett", "班尼特", "倒楣", "冒險家"],
+    "element": "火",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "蒙德的冒險家少年，擁有與他的善良毫不相稱的黴運。"
@@ -765,20 +874,23 @@
   "芭芭拉": {
     "english": "Barbara",
     "aliases": ["barbara", "偶像", "牧師", "西風教會"],
+    "element": "水",
     "rarity": 4,
     "weapon": "法器",
     "description": "蒙德城的大家都喜歡芭芭拉。 「偶像」這個詞是她從一本雜誌裡看到的。"
   },
   "行秋": {
     "english": "Xingqiu",
-    "aliases": ["xingqiu", "行秋", "俠義", "書生", "古華派"],
+    "aliases": ["xingqiu", "行秋", "俠義", "書生"],
+    "element": "水",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "常常能在書攤看到的少年人。手執長劍，胸中常懷俠義之心。"
   },
   "凝光": {
     "english": "Ningguang",
-    "aliases": ["ningguang", "凝光", "天權", "七星", "群玉閣"],
+    "aliases": ["ningguang", "凝光", "天權", "七星"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "法器",
     "description": "「璃月七星」中的「天權」，其名下財富之多，全大陸鮮有人能望其項背。"
@@ -786,30 +898,33 @@
   "諾艾爾": {
     "english": "Noelle",
     "aliases": ["noelle", "諾艾爾", "女僕", "騎士夢"],
+    "element": "岩",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "「西風騎士團」的可靠女僕，夢想有天能成為正式的騎士。"
   },
   "重雲": {
     "english": "Chongyun",
-    "aliases": ["chongyun", "重雲", "方士", "純陽之體", "驅魔士"],
+    "aliases": ["chongyun", "重雲", "方士", "純陽之體"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "雙手劍",
     "description": "驅邪世家的年輕方士，為壓制自身的「純陽之體」費盡心機。"
   },
   "凱亞": {
     "english": "Kaeya",
-    "aliases": ["kaeya", "凱亞", "劍鬥士", "頭腦派", "騎兵"],
+    "aliases": ["kaeya", "凱亞", "劍鬥士", "頭腦派"],
+    "element": "冰",
     "rarity": 4,
     "weapon": "單手劍",
     "description": "異國面容的劍鬥士，西風騎士團的頭腦派人物。"
   },
-    "旅行者": {
+  "旅行者": {
     "english": "Traveler",
     "aliases": ["aether", "lumine", "空", "螢", "哥哥", "妹妹", "旅行者", "兄妹", "小可愛"],
+    "element": "無",
     "rarity": 5,
     "weapon": "單手劍",
     "description": "從世界之外漂流而來的旅行者，被神帶走血親，自此踏上尋找七神之路。"
   }
-  
 }
