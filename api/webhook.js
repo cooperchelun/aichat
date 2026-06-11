@@ -65,7 +65,7 @@ module.exports = async (req, res) => {
 
     if (!query) {
       return res.json({
-        fulfillmentText: "請輸入角色名稱、國家名稱或元素名稱"
+        fulfillmentText: "請輸入角色名稱或國家名稱"
       });
     }
 
@@ -83,7 +83,6 @@ module.exports = async (req, res) => {
 📌 例如：
 • 角色名稱：胡桃、甘雨、護士長、父親
 • 國家名稱：蒙德、璃月、稻妻、楓丹
-• 元素名稱：火、水、冰、雷、風、岩、草
 
 💡 小提示：也可以輸入角色的小名或綽號喔！`
         });
@@ -100,6 +99,7 @@ module.exports = async (req, res) => {
       
       // 用移除關鍵字後的內容繼續搜尋
       if (actualQuery) {
+        // 重新賦值 q 的概念，但因為 q 是 const，這裡用新變數
         const searchQ = actualQuery;
         
         // 角色搜尋
@@ -124,7 +124,6 @@ module.exports = async (req, res) => {
 英文：${c.english}
 稀有度：${c.rarity}★
 武器：${c.weapon}
-元素：${c.element || "未知"}
 
 介紹：
 ${c.description}`
@@ -160,45 +159,6 @@ ${characterList}
 💡 輸入角色名稱可查詢詳細資料`
           });
         }
-        
-        // 元素搜尋
-        const elements = {
-          "火": { aliases: ["火", "火元素", "火屬", "火系", "pyro"] },
-          "水": { aliases: ["水", "水元素", "水屬", "水系", "hydro"] },
-          "冰": { aliases: ["冰", "冰元素", "冰屬", "冰系", "cryo"] },
-          "雷": { aliases: ["雷", "雷元素", "雷屬", "雷系", "electro"] },
-          "風": { aliases: ["風", "風元素", "風屬", "風系", "anemo"] },
-          "岩": { aliases: ["岩", "岩元素", "岩屬", "岩系", "geo"] },
-          "草": { aliases: ["草", "草元素", "草屬", "草系", "dendro"] }
-        };
-        
-        let foundElement = null;
-        for (const [key, elem] of Object.entries(elements)) {
-          if (elem.aliases.some(alias => alias.toLowerCase() === searchQ)) {
-            foundElement = key;
-            break;
-          }
-        }
-        
-        if (foundElement) {
-          const elementChars = [];
-          for (const [name, c] of list) {
-            if (c.element === foundElement) {
-              elementChars.push(name);
-            }
-          }
-          
-          if (elementChars.length > 0) {
-            return res.json({
-              fulfillmentText:
-`✨ 【${foundElement}元素】角色列表（${elementChars.length}位）：
-
-${elementChars.join("、")}
-
-💡 輸入角色名稱可查詢詳細資料`
-            });
-          }
-        }
       }
     }
 
@@ -227,7 +187,6 @@ ${elementChars.join("、")}
 英文：${c.english}
 稀有度：${c.rarity}★
 武器：${c.weapon}
-元素：${c.element || "未知"}
 
 介紹：
 ${c.description}`
@@ -265,50 +224,7 @@ ${characterList}
       });
     }
 
-    // 3️⃣ 元素搜尋
-    const elements = {
-      "火": { aliases: ["火", "火元素", "火屬", "火系", "pyro"] },
-      "水": { aliases: ["水", "水元素", "水屬", "水系", "hydro"] },
-      "冰": { aliases: ["冰", "冰元素", "冰屬", "冰系", "cryo"] },
-      "雷": { aliases: ["雷", "雷元素", "雷屬", "雷系", "electro"] },
-      "風": { aliases: ["風", "風元素", "風屬", "風系", "anemo"] },
-      "岩": { aliases: ["岩", "岩元素", "岩屬", "岩系", "geo"] },
-      "草": { aliases: ["草", "草元素", "草屬", "草系", "dendro"] }
-    };
-
-    let foundElement = null;
-    for (const [key, elem] of Object.entries(elements)) {
-      if (elem.aliases.some(alias => alias.toLowerCase() === q)) {
-        foundElement = key;
-        break;
-      }
-    }
-
-    if (foundElement) {
-      const elementChars = [];
-      for (const [name, c] of list) {
-        if (c.element === foundElement) {
-          elementChars.push(name);
-        }
-      }
-      
-      if (elementChars.length > 0) {
-        return res.json({
-          fulfillmentText:
-`✨ 【${foundElement}元素】角色列表（${elementChars.length}位）：
-
-${elementChars.join("、")}
-
-💡 輸入角色名稱可查詢詳細資料`
-        });
-      } else {
-        return res.json({
-          fulfillmentText: `目前還沒有${foundElement}元素角色的資料，請稍後再試～`
-        });
-      }
-    }
-
-    // 4️⃣ 外部 API（genshin.jmp.blue）
+    // 3️⃣ 外部 API（genshin.jmp.blue）
     try {
       const api = await axios.get(
         "https://genshin.jmp.blue/characters",
@@ -335,7 +251,7 @@ ${elementChars.join("、")}
       }
     } catch (e) {}
 
-    // 5️⃣ AI fallback
+    // 4️⃣ AI fallback
     const ai = await askAI(query);
 
     if (ai) {
@@ -348,7 +264,7 @@ ${ai}`
     }
 
     return res.json({
-      fulfillmentText: `找不到角色、國家或元素：${query}\n\n💡 試試看：胡桃、蒙德、護士長、父親、火元素`
+      fulfillmentText: `找不到角色或國家：${query}\n\n💡 試試看：胡桃、蒙德、護士長、父親`
     });
 
   } catch (e) {
