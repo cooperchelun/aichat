@@ -185,7 +185,7 @@
   },
   "瑪薇卡": {
     "english": "Mavuika",
-    "aliases": ["mavuika", "納塔領袖", "基揚戈茲"],
+    "aliases": ["mavuika", "納塔領袖", "基揚戈茲", "火神"],
     "element": "火",
     "rarity": 5,
     "weapon": "雙手劍",
@@ -321,7 +321,7 @@
   },
   "娜維婭": {
     "english": "Navia",
-    "aliases": ["navia", "刺玫會會長"],
+    "aliases": ["navia", "刺玫會會長", "大小姐"],
     "element": "岩",
     "rarity": 5,
     "weapon": "雙手劍",
@@ -329,7 +329,7 @@
   },
   "芙寧娜": {
     "english": "Furina",
-    "aliases": ["furina", "芙芙", "水神"],
+    "aliases": ["furina", "芙芙", "水神", "芙卡洛斯"],
     "element": "水",
     "rarity": 5,
     "weapon": "單手劍",
@@ -345,7 +345,7 @@
   },
   "萊歐斯利": {
     "english": "Wriothesley",
-    "aliases": ["wriothesley", "公爵", "梅洛彼得堡"],
+    "aliases": ["wriothesley", "公爵", "梅洛彼得堡", "典獄長"],
     "element": "冰",
     "rarity": 5,
     "weapon": "法器",
@@ -353,7 +353,7 @@
   },
   "那維萊特": {
     "english": "Neuvillette",
-    "aliases": ["neuvillette", "最高審判官", "水龍"],
+    "aliases": ["neuvillette", "最高審判官", "水龍", "龍王", "水龍王"],
     "element": "水",
     "rarity": 5,
     "weapon": "法器",
@@ -465,7 +465,7 @@
   },
   "納西妲": {
     "english": "Nahida",
-    "aliases": ["nahida", "小草神", "草神", "小吉祥草王"],
+    "aliases": ["nahida", "小草神", "草神", "小吉祥草王", "布耶爾"],
     "element": "草",
     "rarity": 5,
     "weapon": "法器",
@@ -617,7 +617,7 @@
   },
   "雷電將軍": {
     "english": "Raiden Shogun",
-    "aliases": ["raiden shogun", "雷神", "將軍", "影", "巴爾澤布"],
+    "aliases": ["raiden shogun", "雷神", "將軍", "影", "巴爾澤布", "raiden"],
     "element": "雷",
     "rarity": 5,
     "weapon": "長柄武器",
@@ -649,7 +649,7 @@
   },
   "神裡綾華": {
     "english": "Kamisato Ayaka",
-    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐"],
+    "aliases": ["kamisato ayaka", "綾華", "神裡大小姐", "ayaka"],
     "element": "冰",
     "rarity": 5,
     "weapon": "單手劍",
@@ -721,7 +721,7 @@
   },
   "鍾離": {
     "english": "Zhongli",
-    "aliases": ["zhongli", "鐘離", "岩神", "客卿"],
+    "aliases": ["zhongli", "鐘離", "岩神", "客卿", "摩拉克斯"],
     "element": "岩",
     "rarity": 5,
     "weapon": "長柄武器",
@@ -737,7 +737,7 @@
   },
   "達達利亞": {
     "english": "Tartaglia",
-    "aliases": ["tartaglia", "達達利亞", "公子", "愚人眾第十一席"],
+    "aliases": ["tartaglia", "達達利亞", "公子", "愚人眾第十一席", "阿賈克斯"],
     "element": "水",
     "rarity": 5,
     "weapon": "弓",
@@ -753,7 +753,7 @@
   },
   "可莉": {
     "english": "Klee",
-    "aliases": ["klee", "可莉", "逃跑的太陽", "爆破大師"],
+    "aliases": ["klee", "可莉", "逃跑的太陽", "爆破大師", "火花騎士"],
     "element": "火",
     "rarity": 5,
     "weapon": "法器",
@@ -761,7 +761,7 @@
   },
   "溫迪": {
     "english": "Venti",
-    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯"],
+    "aliases": ["venti", "溫蒂", "風神", "巴巴托斯", "欸嘿"],
     "element": "風",
     "rarity": 5,
     "weapon": "弓",
