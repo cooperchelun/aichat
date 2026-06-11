@@ -1,185 +1,22 @@
-const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
+const line = require('@line/bot-sdk');
 
-// 讀取角色資料
-const characters = JSON.parse(
-  fs.readFileSync(
-    path.join(process.cwd(), "data", "character.json"),
-    "utf8"
-  )
-);
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
 
-// 讀取國家資料
-const nations = JSON.parse(
-  fs.readFileSync(
-    path.join(process.cwd(), "data", "nation.json"),
-    "utf8"
-  )
-);
-
-const list = Object.entries(characters);
-
-// =========================
-// 🟡 Gemini 補資料（取代爬蟲）
-// =========================
-async function askAI(name) {
-  try {
-    const res = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        contents: [{
-          parts: [{
-            text: `請提供原神角色資料，格式如下：
-
-角色名稱：${name}
-稀有度（如果未知請推測）：
-武器類型（如果未知請推測）：
-簡短介紹（合理補全）：
-`
-          }]
-        }]
-      }
-    );
-
-    return res.data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-  } catch (e) {
-    return null;
-  }
-}
-
-// =========================
-// webhook
-// =========================
+// 處理 LINE 的驗證
 module.exports = async (req, res) => {
+  // 如果收到的是來自 LINE 的 Webhook 驗證 (測試連線時會用到)
+  if (req.body.events && req.body.events.length === 0) {
+    return res.status(200).send('OK');
+  }
+
+  // 原有的 Dialogflow 邏輯放在這裡
   try {
-
-    const body =
-      typeof req.body === "string"
-        ? JSON.parse(req.body)
-        : req.body;
-
-    const query =
-      body?.queryResult?.queryText?.trim();
-
-    if (!query) {
-      return res.json({
-        fulfillmentText: "請輸入角色名稱或國家名稱"
-      });
-    }
-
-    const q = query.toLowerCase();
-
-    // 1️⃣ 角色搜尋（支援 aliases 別名）
-    let local = null;
-    
-    for (const [name, c] of list) {
-      const searchKeys = [
-        name.toLowerCase(),
-        c.english?.toLowerCase(),
-        ...(c.aliases || []).map(a => a.toLowerCase())
-      ];
-      
-      if (searchKeys.includes(q)) {
-        local = [name, c];
-        break;
-      }
-    }
-
-    if (local) {
-      const [name, c] = local;
-
-      return res.json({
-        fulfillmentText:
-`角色：${name}
-英文：${c.english}
-稀有度：${c.rarity}★
-武器：${c.weapon}
-
-介紹：
-${c.description}`
-      });
-    }
-
-    // 2️⃣ 國家搜尋
-    let foundNation = null;
-    for (const [nationName, nationData] of Object.entries(nations)) {
-      const nationKeys = [
-        nationName.toLowerCase(),
-        nationData.english?.toLowerCase(),
-        ...(nationData.aliases || []).map(a => a.toLowerCase())
-      ];
-      if (nationKeys.includes(q)) {
-        foundNation = { name: nationName, data: nationData };
-        break;
-      }
-    }
-
-    if (foundNation) {
-      const { name, data } = foundNation;
-      const characterList = data.characters.join("、");
-      
-      return res.json({
-        fulfillmentText:
-`🏰 【${name}】
-
-${data.description}
-
-📋 所屬角色（${data.characters.length}位）：
-${characterList}
-
-💡 輸入角色名稱可查詢詳細資料`
-      });
-    }
-
-    // 3️⃣ 外部 API（genshin.jmp.blue）
-    try {
-      const api = await axios.get(
-        "https://genshin.jmp.blue/characters",
-        { timeout: 3000 }
-      );
-
-      const found = api.data.find(c =>
-        c.toLowerCase() === q
-      );
-
-      if (found) {
-        const d = await axios.get(
-          `https://genshin.jmp.blue/characters/${found}`,
-          { timeout: 3000 }
-        );
-
-        return res.json({
-          fulfillmentText:
-`角色：${d.data.name}
-元素：${d.data.vision}
-武器：${d.data.weapon}
-稀有度：${d.data.rarity}★`
-        });
-      }
-    } catch (e) {}
-
-    // 4️⃣ AI fallback
-    const ai = await askAI(query);
-
-    if (ai) {
-      return res.json({
-        fulfillmentText:
-`（AI補全資料）
-
-${ai}`
-      });
-    }
-
-    return res.json({
-      fulfillmentText: `找不到角色或國家：${query}`
-    });
-
+     // ... 你的原有程式碼 ...
+     // 記得將 return res.json(...) 保持為 Dialogflow 的格式
   } catch (e) {
-    console.error(e);
-    return res.json({
-      fulfillmentText: "系統錯誤"
-    });
+     // ...
   }
 };
